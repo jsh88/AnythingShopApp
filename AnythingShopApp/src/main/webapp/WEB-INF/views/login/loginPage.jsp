@@ -19,9 +19,9 @@
 	비밀번호 까먹음? <input type="button" value="비밀번호찾기"/><br><br>
 	
 비회원 주문/배송 조회<br>
-	<form action="orderSearch">
-		주문자명 : <input type="text" placeholder="주문자명을 입력해주세요." /> <br>
-		주문번호 : <input type="password" placeholder="주문번호를 입력해주세요"/> <br>
+	<form action="orderSearch" method="post">
+		주문자명 : <input type="text" name="name" placeholder="주문자명을 입력해주세요." /> <br>
+		주문번호 : <input type="text" name="ono" placeholder="주문번호를 입력해주세요"/> <br>
 	</form>
 </body>
 </html>

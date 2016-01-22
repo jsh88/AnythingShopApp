@@ -9,10 +9,6 @@ create table member(
   ldate date default sysdate not null
 );
 
-drop table orders;
-drop table member;
-drop table product;
-
 create table product(
   pno number constraint goods_pk primary key,
   name varchar2(100) not null,
@@ -31,9 +27,9 @@ create sequence product_seq
   increment by 1;
 
 create table orders(
-  ono number constraint order_pk primary key,
-  id varchar2(30) constraint order_mem_fk references member(id) on delete cascade,
-  pno number constraint order_product_fk references product(pno) on delete cascade,  
+  ono number not null,
+  id varchar2(30) constraint order_mem_fk references member(id) on delete cascade not null,
+  pno number constraint order_product_fk references product(pno) on delete cascade not null,  
   quantity number not null,
   price number not null,
   name varchar2(15) not null,
@@ -41,7 +37,8 @@ create table orders(
   phone varchar2(20) not null,
   odate date default sysdate not null,
   adate date default null,
-  state char(1) default 0 not null
+  state char(1) default 0 not null,
+  constraint order_pk primary key(ono, id, pno)
 );
 
 create sequence orders_seq
@@ -61,5 +58,3 @@ create table log(
   adate date,
   state char(1)
 );
-
-select table_name from tabs;

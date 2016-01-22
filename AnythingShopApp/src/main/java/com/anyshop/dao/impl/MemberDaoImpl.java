@@ -36,7 +36,7 @@ public class MemberDaoImpl implements MemberDao {
 
 	@Override
 	public Member getMember(String id) {
-		
+
 		jdbcTemplate.update("update member set ldate = sysdate where id = ?", id);
 
 		return (Member) jdbcTemplate.queryForObject("select * from member where id = ?", new Object[] { id },
@@ -85,19 +85,42 @@ public class MemberDaoImpl implements MemberDao {
 
 		jdbcTemplate.update("insert into member values(?, ?, ?, ?, ?, ?, sysdate, sysdate)",
 				new Object[] { m.getId(), m.getPw(), m.getName(), m.getAddr(), m.getEmail(), m.getPhone() });
-		
+
 	}
 
 	@Override
 	public Boolean checkId(String id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return jdbcTemplate.query("select 1 from member where id = ?", new Object[] { id },
+				new ResultSetExtractor<Boolean>() {
+
+					@Override
+					public Boolean extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+						if (rs.next())
+							return true;
+						return false;
+
+					}
+				});
+
 	}
 
 	@Override
 	public Boolean checkEmail(String email) {
-		// TODO Auto-generated method stub
-		return null;
+
+		return jdbcTemplate.query("select 1 from member where email = ?", new Object[] { email },
+				new ResultSetExtractor<Boolean>() {
+
+					@Override
+					public Boolean extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+						if (rs.next())
+							return true;
+						return false;
+
+					}
+				});
 	}
 
 }

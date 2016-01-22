@@ -44,17 +44,18 @@ public class MainServiceImpl implements MainService {
 		Product prod = (Product) session.getAttribute("prod");
 		int quentity = Integer.valueOf(request.getParameter("quentity"));
 		int check = 0;
+
 		prod.setQuantity(quentity);
 		if (pList.size() == 0) {
 			pList.add(prod);
 		} else {
 			for (int i = 0; i < pList.size(); i++) {
 				if (prod.getpNo() == pList.get(i).getpNo()) {
-					check+=1;
+					check += 1;
 					pList.get(i).setQuantity(quentity);
-				} 
+				}
 			}
-			if(check==0){
+			if (check == 0) {
 				pList.add(prod);
 			}
 		}

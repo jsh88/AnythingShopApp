@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/jee 
+		http://www.springframework.org/schema/jee/spring-jee-4.1.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+	
+	<!--
+		* JNDI를 이용한 DataSource 설정하기
+		웹로직이나 JBoss와 같은 WAS(Web Application Server)를 사용할 경우
+		JNDI를 이용해 DataSource를 설정할 경우가 많다. 물론 톰캣이나 제티(Jetty)
+		등의 웹 컨테이너를 사용할 경우에도 JNDI를 통해 DataSource를 얻을 수 있다.
+		
+		JNDI 방식의 커넥션 풀을 사용하기 위해서는 src/main/webapp/META-INF
+		폴더에 커넥션 풀에 대한 설정 파일인 context.xml이 작성되어 있어야 한다.
+		그리고 JNDI로부터 DataSource를 가져오려면 <jee:jndi-lookup> 태그를
+		사용해 아래와 같이 JNDI에 등록된 커넥션 풀 이름으로 DataSource를 얻을 수 있다.
+		 
+	 <jee:jndi-lookup id="dataSource"
+	 	jndi-name="jdbc/mallDBPool" resource-ref="true" />
+
+		위의 설정에서 jndi-name 속성은 JNDI에서 검색할 커넥션 풀의 이름을 지정하고
+		resource-ref 속성에 true를 지정하게 되면 검색할 커넥션 풀의 이름 앞에
+		java:comp/env를 붙여준다. 즉 java:comp/env/jdbc/mallDBPool 을
+		사용해 JNDI에서 커넥션 풀을 검색하게 된다. 	 			
+		이 <jee:jndi-lookup> 태그를 사용할 경우 내부적으로 스프링에서 제공하는 
+		JndiObjectFactoryBean 클래스를 사용해 DataSource를 구하게 된다.
+		
+		JndiObjectFactoryBean 직접 사용해 DataSource를 얻으려면 아래와 같이
+		JndiObjectFactoryBean 클래스를 스프링 bean으로 설정하면 된다. 	
+	 -->
+	<bean id="dataSource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="jdbc/springDBPool" />
+		<property name="resourceRef" value="true" />		
+	</bean>		
+</beans>

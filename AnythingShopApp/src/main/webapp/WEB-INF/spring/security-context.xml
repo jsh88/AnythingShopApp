@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/security 
+		http://www.springframework.org/schema/security/spring-security-4.0.xsd
+		http://www.springframework.org/schema/jee 
+		http://www.springframework.org/schema/jee/spring-jee-4.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+		
+	<security:http auto-config="true">
+		<security:intercept-url pattern="/login"
+			access="isAnonymous()" />
+		<security:intercept-url pattern="/loginDuplicate"
+			access="isAnonymous()" />
+		<!-- <security:intercept-url pattern="/**" access="isAnonymous()" /> -->
+		<security:csrf disabled="true" />
+		<security:form-login login-page="/login"
+			username-parameter="id" password-parameter="pw" login-processing-url="/loginProcess"
+			default-target-url="/loginSuccess" authentication-failure-url="/login"
+			always-use-default-target="true" />
+		<security:logout invalidate-session="true" logout-url="/logout"
+			logout-success-url="/index" />
+
+		<security:session-management>
+			<security:concurrency-control
+				max-sessions="1" expired-url="/loginDuplicate" />
+		</security:session-management>
+	</security:http>
+
+	<bean
+		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+
+	<security:authentication-manager>
+		<security:authentication-provider
+			ref="customAuthenticationProvider" />
+	</security:authentication-manager>	
+</beans>

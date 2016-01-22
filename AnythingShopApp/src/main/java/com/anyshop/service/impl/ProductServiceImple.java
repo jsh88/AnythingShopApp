@@ -1,12 +1,9 @@
-package com.anyshop.service.service.impl;
-
-import java.util.List;
+package com.anyshop.service.impl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import com.anyshop.dao.ProductDao;
@@ -24,18 +21,16 @@ public class ProductServiceImple implements ProductService {
 	}
 
 	@Override
-	public List<Order> getOrders(HttpServletRequest request) {
+	public void getOrders(HttpServletRequest request) {
 
-		productDao.getOrders(request.getParameter("name"), Integer.parseInt("ono"));
-		
-		return null;
+		request.setAttribute("order", productDao.getOrders(request.getParameter("name"), Integer.parseInt("ono")));
 
 	}
 
 	@Override
 	public void getMemberOrders(HttpSession session, HttpServletRequest request) {
 
-		productDao.getOrders(((Member) session.getAttribute("member")).getId());
+		request.setAttribute("oList", productDao.getOrders(((Member) session.getAttribute("member")).getId()));
 
 	}
 

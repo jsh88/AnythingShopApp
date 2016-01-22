@@ -30,7 +30,7 @@ a {
 			<li><a href="loginPage">로그인</a></li>
 			<li><a href="useagree">회원가입</a></li>
 		</c:if>
-		<li><a href="#">마이페이지</a></li>
+		<li><a href="mypage">마이페이지</a></li>
 		<li><a href="#">고객센터</a></li>
 		<li><a href="#">idea</a></li>
 		<li><a href="#">Living</a></li>

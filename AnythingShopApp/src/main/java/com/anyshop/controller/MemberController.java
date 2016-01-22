@@ -36,35 +36,35 @@ public class MemberController {
 		return "index.jsp?body=member/join";
 
 	}
-	
+
 	// 회원가입 처리
 	@RequestMapping(value = "join")
 	public String joinMember(HttpServletRequest request) {
-		
+
 		memberService.addMember(request);
 
 		return "redirect:index";
 
 	}
-	
+
 	// 아이디 중복 체크
 	@RequestMapping(value = "checkId")
 	public String checkId(HttpServletRequest request) {
-		
+
 		memberService.checkId(request);
-		
-		return "-";		
+
+		return "-";
 	}
-	
+
 	// 이메일 중복 체크
 	@RequestMapping(value = "checkEmail")
 	public String checkEmail(HttpServletRequest request) {
-		
+
 		memberService.checkEmail(request);
-		
-		return "-";		
+
+		return "-";
 	}
-	
+
 	// 로그인 페이지
 	@RequestMapping(value = "/loginPage")
 	public String loginForm() {
@@ -78,7 +78,7 @@ public class MemberController {
 	public String login(HttpSession session) {
 
 		return "redirect:index";
-		
+
 	}
 
 	// 로그아웃
@@ -88,7 +88,7 @@ public class MemberController {
 		session.invalidate();
 
 		return "redirect:index";
-		
+
 	}
 
 	// 로그인 성공
@@ -119,4 +119,15 @@ public class MemberController {
 
 	}
 
+	@RequestMapping(value="/mypage")
+	public String myPageForm(HttpSession session) {
+		Member mem = (Member) session.getAttribute("member");
+
+		if (mem != null) {
+			return "index.jsp?body=member/myPage";
+		} else {
+			return "redirect:loginPage";
+		}
+
+	}
 }

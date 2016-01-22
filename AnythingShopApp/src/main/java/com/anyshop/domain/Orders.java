@@ -5,6 +5,7 @@ public class Orders {
 	private int oNo;
 	private String id;
 	private int pNo;
+	private boolean auth;
 	private String quantity;
 	private int price;
 	private String name;
@@ -36,6 +37,14 @@ public class Orders {
 
 	public void setpNo(int pNo) {
 		this.pNo = pNo;
+	}
+
+	public void setAuth(boolean auth) {
+		this.auth = auth;
+	}	
+
+	public boolean isAuth() {
+		return auth;
 	}
 
 	public String getQuantity() {

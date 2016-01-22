@@ -1,4 +1,10 @@
 /SQL/
+<<<<<<< HEAD
 /datasource/
 /messages/
 /com/
+=======
+/com/
+/datasource/
+/messages/
+>>>>>>> refs/heads/jsh

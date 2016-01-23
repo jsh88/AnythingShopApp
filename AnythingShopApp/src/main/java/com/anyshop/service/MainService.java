@@ -11,4 +11,6 @@ public interface MainService {
 	public void getProductDetail(HttpServletRequest request);
 	
 	public void addCart(HttpSession session, HttpServletRequest request);
+	
+	public void getCart(HttpServletRequest request);
 }

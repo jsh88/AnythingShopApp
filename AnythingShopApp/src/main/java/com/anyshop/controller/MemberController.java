@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.anyshop.domain.Member;
+import com.anyshop.service.MainService;
 import com.anyshop.service.MemberService;
 
 @Controller
@@ -17,11 +18,17 @@ public class MemberController {
 
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private MainService mainServie;
 
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
 
+	public void setMainServie(MainService mainServie) {
+		this.mainServie = mainServie;
+	}
+	
 	@RequestMapping(value = "useagree")
 	public String useAgree() {
 
@@ -120,9 +127,11 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="/mypage")
-	public String myPageForm(HttpSession session) {
+	public String myPageForm(HttpSession session, HttpServletRequest request) {
 		Member mem = (Member) session.getAttribute("member");
-
+		
+		mainServie.getCart(request);
+		
 		if (mem != null) {
 			return "index.jsp?body=member/myPage";
 		} else {

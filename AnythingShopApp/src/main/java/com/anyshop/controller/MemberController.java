@@ -134,6 +134,7 @@ public class MemberController {
 
 	@RequestMapping(value="/mypage")
 	public String myPageForm(HttpSession session, HttpServletRequest request) {
+		
 		Member mem = (Member) session.getAttribute("member");
 		
 		mainServie.getCart(request);

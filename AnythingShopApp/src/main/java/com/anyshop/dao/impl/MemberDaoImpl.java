@@ -21,9 +21,9 @@ public class MemberDaoImpl implements MemberDao {
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		
 		this.jdbcTemplate = jdbcTemplate;
-		System.out.println("MemberDao - jdbcTemplate" + jdbcTemplate);
-		System.out.println("DataSource : " + jdbcTemplate.getDataSource());
+		
 	}
 
 	public JdbcTemplate getJdbcTemplate() {

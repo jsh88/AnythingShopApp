@@ -34,7 +34,7 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Orders> getOrders(String name, int oNo) {
 
 		return (List<Orders>) jdbcTemplate.query(
-				"select o.*, p.name as pname from orders o, product p where o.pno = p.pno and o.name = ? and o.ono = ? order by odate asc, ono desc",
+				"select o.*, p.name as pname, p.price as pprice from orders o, product p where o.pno = p.pno and o.name = ? and o.ono = ? order by odate asc, ono desc",
 				new Object[] { name, oNo },
 
 				new RowMapper<Orders>() {
@@ -51,7 +51,7 @@ public class ProductDaoImpl implements ProductDao {
 						
 						o.setQuantity(rs.getInt("quantity"));
 						o.setPhone(rs.getString("phone"));
-						o.setPrice(rs.getInt("price"));
+						o.setPrice(rs.getInt("pprice"));
 						o.settPrice(o.getPrice() * o.getQuantity());
 						o.setName(name);
 						o.setpName(rs.getString("pname"));
@@ -71,7 +71,7 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Orders> getOrders(String id) {
 
 		return (List<Orders>) jdbcTemplate.query(
-				"select o.*, p.name as pname from orders o, product p where o.pno = p.pno and o.id = ? order by odate asc, ono desc",
+				"select o.*, p.name as pname, p.price as pprice from orders o, product p where o.pno = p.pno and o.id = ? order by odate asc, ono desc",
 				new Object[] { id },
 
 				new RowMapper<Orders>() {
@@ -88,7 +88,7 @@ public class ProductDaoImpl implements ProductDao {
 						
 						o.setQuantity(rs.getInt("quantity"));
 						o.setPhone(rs.getString("phone"));
-						o.setPrice(rs.getInt("price"));
+						o.setPrice(rs.getInt("pprice"));
 						o.settPrice(o.getPrice() * o.getQuantity());
 						o.setName(rs.getString("name"));
 						o.setpName(rs.getString("pname"));

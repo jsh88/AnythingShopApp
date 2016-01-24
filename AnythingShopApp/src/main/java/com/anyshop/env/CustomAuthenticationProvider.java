@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,20 +12,18 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.stereotype.Component;
 
 import com.anyshop.controller.MemberController;
 import com.anyshop.dao.MemberDao;
+import com.anyshop.domain.Member;
 
-//@Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
-
-	//@Autowired
+	
 	private MemberDao dao;
 
 	public void setDao(MemberDao dao) {
+		
 		this.dao = dao;
-		System.out.println("CustomAuthenticationProvider : " + dao.getJdbcTemplate().getDataSource());
 		
 	}
 
@@ -45,9 +42,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 		logger.info("Welcome authenticate! {}", user_id + "/" + user_pw);
 
-		System.out.println(user_id + user_pw);
-		System.out.println("DAO : " + dao + " --- dataSource : " + dao.getJdbcTemplate().getDataSource());
-
 		if (dao != null && dao.loginCheck(user_id, user_pw)) {
 
 			logger.info("정상 로그인입니다.");
@@ -58,10 +52,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 			UsernamePasswordAuthenticationToken result = new UsernamePasswordAuthenticationToken(user_id, user_pw,
 					roles);
-
-			result.setDetails(dao.getMember(user_id));
+			
+			result.setDetails(new Member(user_id, user_pw));
 
 			return result;
+			
 		} else {
 			logger.info("비정상 로그인");
 		}

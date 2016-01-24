@@ -39,28 +39,23 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public Member getMember(String id) {
+	public Member getMember(Member m) {
 
-		jdbcTemplate.update("update member set ldate = sysdate where id = ?", id);
+		jdbcTemplate.update("update member set ldate = sysdate where id = ?", m.getUsername());
 
-		return (Member) jdbcTemplate.queryForObject("select * from member where id = ?", new Object[] { id },
-				new RowMapper<Member>() {
+		return (Member) jdbcTemplate.queryForObject("select * from member where id = ?",
+				new Object[] { m.getUsername() }, new RowMapper<Member>() {
 
 					@Override
 					public Member mapRow(ResultSet rs, int rownum) throws SQLException {
 
-						Member m = new Member();
-
-						while (rs.next()) {
-
-							m.setId(rs.getString("id"));
-							m.setPw(rs.getString("pw"));
-							m.setName(rs.getString("name"));
-							m.setAddr(rs.getString("addr"));
-							m.setEmail(rs.getString("email"));
-							m.setJdate(rs.getString("jdate"));
-							m.setLdate(rs.getString("ldate"));
-						}
+						m.setId(rs.getString("id"));
+						m.setPw(rs.getString("pw"));
+						m.setName(rs.getString("name"));
+						m.setAddr(rs.getString("addr"));
+						m.setEmail(rs.getString("email"));
+						m.setJdate(rs.getString("jdate"));
+						m.setLdate(rs.getString("ldate"));
 
 						return m;
 					}

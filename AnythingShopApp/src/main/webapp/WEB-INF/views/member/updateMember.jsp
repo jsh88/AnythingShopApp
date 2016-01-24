@@ -10,10 +10,7 @@
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-				$("#submit").click(
-						function() {
+						function submit() {
 							var id = $('input:text[name=id]').val();
 							var name = $('input:text[name=name]').val();
 							var email = $('input:text[name=email]').val();
@@ -29,8 +26,7 @@
 							} else{
 								document.updateform.submit();
 							}
-						});
-			});
+						}
 </script>
 </head>
 <body>
@@ -48,7 +44,7 @@
 		<img src="resources/images/join_txt_04.gif" />* 필수입력사항<br />
 	</div>
 	<div>
-	<form name="updateform" action="update" method="post">
+	<form name="updateform" action="update" method="post" >
 	<table>
 		<c:set var="phone" value="${member.phone}"/>
 					<tr>
@@ -64,8 +60,8 @@
 						-<input type="text" name="phone3" value="${member.phone}"/>
 						</td>
 				</table><br>
-			</form>
-			<a id="submit">
+			</form >
+			<a href="javascript:submit()" target="mypagefr">
 			<img src="resources/images/btn_modify_info.gif"></a> 
 			<a href="javascript:history.back()"><img src="resources/images/btn_back.gif"></a>
 		</div>

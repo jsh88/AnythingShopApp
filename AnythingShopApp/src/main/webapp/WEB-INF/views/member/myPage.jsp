@@ -20,7 +20,7 @@
 <li><%=mem.getName() %>님의 쇼핑정보</li>
 <li>장바구니 <%=pList.size() %></li>
 <li>개인정보</li>
-<li><a href="updatemember" target="mypagefr">회원정보 수정</a></li>
+<li><a href="updatemember?id=<%=mem.getId() %>" target="mypagefr">회원정보 수정</a></li>
 <li><a href="deletemember">회원탈퇴</a></li>
 <li>내 쇼핑정보</li>
 <li><a href="order">주문내역/배송조회</a></li>
@@ -30,7 +30,7 @@
 </div>
 <div>
 <br/><br/>
-<iframe src="updatemember?id=a" id="mypagefr" name = "mypagefr"  frameborder="0"
+<iframe id="mypagefr" name = "mypagefr"  frameborder="0"
  width="1000px" height="800px"/>
 
 </div>

@@ -158,8 +158,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/update")
-	public String updateMemberResult(HttpServletRequest request){
+	public String updateMemberResult(HttpServletRequest request, HttpServletResponse response){
 		memberService.updateMemberResult(request);
+		
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
 		
 		return "redirect:mypage";
 	}

@@ -153,6 +153,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void updateMember(Member m) {
 		SqlParameterSource beanProperty = new BeanPropertySqlParameterSource(m);
-		namedParameterJdbcTemplate.update("update member", beanProperty);
+		namedParameterJdbcTemplate.update("UPDATE product SET addr = :addr, email = :email, phone = :phone, "
+				+ "WHERE id = :id", beanProperty);
 	}
 }

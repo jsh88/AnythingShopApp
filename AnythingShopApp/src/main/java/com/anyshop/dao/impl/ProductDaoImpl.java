@@ -28,38 +28,79 @@ public class ProductDaoImpl implements ProductDao {
 	public void setNamedParameterJdbcTemplate(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
-
+	
+	// 비회원 주문 
 	@Override
 	public List<Orders> getOrders(String name, int oNo) {
 
-		return (List<Orders>) jdbcTemplate.query("select * from orders where name = ?, ono = ?", new Object[] {},
+		return (List<Orders>) jdbcTemplate.query(
+				"select o.*, p.name as pname from orders o, product p where o.pno = p.pno and o.name = ? and o.ono = ? order by odate asc, ono desc",
+				new Object[] { name, oNo },
 
 				new RowMapper<Orders>() {
 
 					@Override
 					public Orders mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+						Orders o = new Orders();
+
+						o.setoNo(oNo);
+						o.setId(rs.getString("id"));
+						o.setpNo(rs.getInt("pno"));
+						o.setAuth(false);
 						
-							Orders o = new Orders();
-							
-							o.setoNo(oNo);
-							o.setId(rs.getString("id"));
-							o.setpNo(rs.getInt("pno"));
-							
-							// 진행중
-						
-						return null;
-						
+						o.setQuantity(rs.getInt("quantity"));
+						o.setPhone(rs.getString("phone"));
+						o.setPrice(rs.getInt("price"));
+						o.settPrice(o.getPrice() * o.getQuantity());
+						o.setName(name);
+						o.setpName(rs.getString("pname"));
+						o.setAddr(rs.getString("addr"));
+						o.setoDate(rs.getString("odate"));
+						o.setaDate(rs.getString("adate"));
+						o.setState(o.getaDate() != null ? true : false);
+
+						return o;
+
 					}
-
 				});
-
 	}
 
+	// 회원 주문
 	@Override
 	public List<Orders> getOrders(String id) {
 
-		return null;
+		return (List<Orders>) jdbcTemplate.query(
+				"select o.*, p.name as pname from orders o, product p where o.pno = p.pno and o.id = ? order by odate asc, ono desc",
+				new Object[] { id },
 
+				new RowMapper<Orders>() {
+
+					@Override
+					public Orders mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+						Orders o = new Orders();
+
+						o.setoNo(rs.getInt("ono"));
+						o.setId(rs.getString("id"));
+						o.setpNo(rs.getInt("pno"));
+						o.setAuth(true);
+						
+						o.setQuantity(rs.getInt("quantity"));
+						o.setPhone(rs.getString("phone"));
+						o.setPrice(rs.getInt("price"));
+						o.settPrice(o.getPrice() * o.getQuantity());
+						o.setName(rs.getString("name"));
+						o.setpName(rs.getString("pname"));
+						o.setAddr(rs.getString("addr"));
+						o.setoDate(rs.getString("odate"));
+						o.setaDate(rs.getString("adate"));
+						o.setState(o.getaDate() != null ? true : false);
+
+						return o;
+
+					}
+				});
 	}
 
 }

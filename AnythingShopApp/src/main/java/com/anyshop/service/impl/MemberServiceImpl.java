@@ -48,4 +48,30 @@ public class MemberServiceImpl implements MemberService {
 		request.setAttribute("isEmail", memberDao.checkEmail(request.getParameter("email")));
 
 	}
+	
+	@Override
+	public void getMemberPage(HttpServletRequest request) {
+		String id = request.getParameter("id");
+		Member member = memberDao.getUpdateMember(id);
+		
+		request.setAttribute("member", member);
+		
+	}
+	
+	@Override
+	public void updateMemberResult(HttpServletRequest request) {
+		
+		Member m = new Member();
+		m.setId(request.getParameter("id"));
+		m.setAddr(request.getParameter("addr"));
+		String phone1 = request.getParameter("phone1");
+		String phone2 = request.getParameter("phone2");
+		String phone3 = request.getParameter("phone3");
+		String phone = phone1 + "-" + phone2 + "-" +phone3;
+		m.setPhone(phone);
+		m.setEmail(request.getParameter("email"));
+		
+		
+		
+	}
 }

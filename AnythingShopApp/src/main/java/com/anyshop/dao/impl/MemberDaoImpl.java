@@ -7,10 +7,14 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import com.anyshop.dao.MemberDao;
 import com.anyshop.domain.Member;
+import com.anyshop.domain.Product;
 
 //@Repository
 public class MemberDaoImpl implements MemberDao {
@@ -122,5 +126,38 @@ public class MemberDaoImpl implements MemberDao {
 					}
 				});
 	}
+	
+	@Override
+	public Member getUpdateMember(String id){
+		SqlParameterSource idParam = new MapSqlParameterSource("id", id);
+		
+		return namedParameterJdbcTemplate.query("select * from member where id = :id",idParam,
+				new ResultSetExtractor<Member>() {
 
+					@Override
+					public Member extractData(ResultSet rs) throws SQLException, DataAccessException {
+						Member m = new Member();
+
+						if (rs.next()) {
+
+							m.setId(rs.getString("id"));
+							m.setPw(rs.getString("pw"));
+							m.setName(rs.getString("name"));
+							m.setAddr(rs.getString("addr"));
+							m.setEmail(rs.getString("email"));
+							m.setPhone(rs.getString("phone"));
+							m.setJdate(rs.getString("jdate"));
+							m.setLdate(rs.getString("ldate"));
+						return m;
+					}
+						return null;
+					}
+				});
+	}
+	
+	@Override
+	public void updateMember(Member m) {
+		SqlParameterSource beanProperty = new BeanPropertySqlParameterSource(m);
+		namedParameterJdbcTemplate.update("update member", beanProperty);
+	}
 }

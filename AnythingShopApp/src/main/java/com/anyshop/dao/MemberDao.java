@@ -18,4 +18,7 @@ public interface MemberDao {
 
 	public Boolean checkEmail(String email);
 	
+	public Member getUpdateMember(String id);
+	
+	public void updateMember(Member m);
 }

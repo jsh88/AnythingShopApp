@@ -3,9 +3,9 @@
 <%@page import="com.anyshop.domain.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
     <%Member mem = (Member) session.getAttribute("member");
     List<Product> pList = (List<Product>) request.getAttribute("pList");
-    System.out.println(pList.size());
     %>
 <!DOCTYPE html>
 <html>
@@ -19,29 +19,20 @@
 <li>마이페이지</li>
 <li><%=mem.getName() %>님의 쇼핑정보</li>
 <li>장바구니 <%=pList.size() %></li>
-</ul>
-<ul>
 <li>개인정보</li>
-<li><a href="">회원정보 수정</a></li>
-<li>장바구니 <%=pList.size() %></li>
+<li><a href="updatemember" target="mypagefr">회원정보 수정</a></li>
+<li><a href="deletemember">회원탈퇴</a></li>
+<li>내 쇼핑정보</li>
+<li><a href="order">주문내역/배송조회</a></li>
+<li><a href="answer">1:1 문의개시판</a></li>
+<li><a href="watchlist">최근본 상품목록</a></li>
 </ul>
 </div>
 <div>
-<iframe />
-<table>
-			<tr>
-				<td><img src="resources/images/title_modifyinfo.gif" /></td>
-			</tr>
-			<tr>
-				<td>HOME > 회원가입 > 회원정보수정</td>
-			</tr>
-		</table>
-		<div>
-			<img src="resources/images/join_txt_04.gif" />* 필수입력사항<br />
-			<form action="join" method="post">
-			
-			</form>
-			</div>
-			</div>
+<br/><br/>
+<iframe src="updatemember?id=a" id="mypagefr" name = "mypagefr"  frameborder="0"
+ width="1000px" height="800px"/>
+
+</div>
 </body>
 </html>

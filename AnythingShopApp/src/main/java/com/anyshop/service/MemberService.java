@@ -9,5 +9,8 @@ public interface MemberService {
 	public void checkId(HttpServletRequest request);
 
 	public void checkEmail(HttpServletRequest request);
-
+	
+	public void getMemberPage(HttpServletRequest request);
+	
+	public void updateMemberResult(HttpServletRequest request);
 }

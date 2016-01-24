@@ -1,6 +1,7 @@
 package com.anyshop.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,14 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	@Autowired
-	private MainService mainServie;
+	private MainService mainService;
 
 	public void setMemberService(MemberService memberService) {
 		this.memberService = memberService;
 	}
 
-	public void setMainServie(MainService mainServie) {
-		this.mainServie = mainServie;
+	public void setMainServie(MainService mainService) {
+		this.mainService = mainService;
 	}
 	
 	@RequestMapping(value = "useagree")
@@ -130,7 +131,8 @@ public class MemberController {
 	public String myPageForm(HttpSession session, HttpServletRequest request) {
 		Member mem = (Member) session.getAttribute("member");
 		
-		mainServie.getCart(request);
+		
+		mainService.getCart(request);
 		
 		if (mem != null) {
 			return "index.jsp?body=member/myPage";
@@ -138,5 +140,21 @@ public class MemberController {
 			return "redirect:loginPage";
 		}
 
+	}
+	
+	@RequestMapping(value="/updatemember")
+	public String updateMemberPage(HttpServletRequest request, HttpServletResponse response){
+		memberService.getMemberPage(request);
+		
+	    response.setHeader("X-Frame-Options", "SAMEORIGIN");
+		
+		return "member/updateMember";
+	}
+	
+	@RequestMapping(value="/update")
+	public String updateMemberResult(HttpServletRequest request){
+		memberService.updateMemberResult(request);
+		
+		return "redirect:mypage";
 	}
 }

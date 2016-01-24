@@ -6,7 +6,7 @@ import com.anyshop.domain.Member;
 
 public interface MemberDao {
 	
-	public Member getMember(String id);
+	public Member getMember(Member member);
 
 	public boolean loginCheck(String user_id, String user_pw);
 	

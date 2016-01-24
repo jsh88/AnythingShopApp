@@ -1,45 +1,71 @@
 package com.anyshop.domain;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-@SuppressWarnings("serial")
 public class Member implements UserDetails {
 
+	private static final long serialVersionUID = -4450269958885980297L;
+	private String username;
+	private String password;
 	private String id;
 	private String pw;
-
-	public Member(String userName, String password) {
-		this.id = userName;
-		this.pw = password;
-	}
-	
-	public Member() {
-	}
-
 	private String name;
 	private String addr;
 	private String email;
 	private String phone;
 	private String jdate;
 	private String ldate;
-
-	public String getId() {
-		return id;
+	
+	public Member() {
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public Member(String userName, String password) {
+		this.username = userName;
+		this.password = password;
 	}
 
-	public String getPw() {
-		return pw;
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		authorities.add(new SimpleGrantedAuthority("memberRole"));
+
+		return authorities;
 	}
 
-	public void setPw(String pw) {
-		this.pw = pw;
+	@Override
+	public String getPassword() {
+		return password;
+	}
+
+	@Override
+	public String getUsername() {
+		return username;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 
 	public String getName() {
@@ -90,46 +116,32 @@ public class Member implements UserDetails {
 		this.ldate = ldate;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
+	public String getId() {
+		return id;
 	}
 
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
+	public String getPw() {
+		return pw;
 	}
 
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
+	public void setPw(String pw) {
+		this.pw = pw;
 	}
 
 }

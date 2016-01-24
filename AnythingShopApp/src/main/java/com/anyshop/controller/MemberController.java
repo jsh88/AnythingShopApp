@@ -77,6 +77,8 @@ public class MemberController {
 	@RequestMapping(value = "/login")
 	public String login(HttpSession session) {
 
+		System.out.println("로그인 시작");
+		
 		return "redirect:index";
 		
 	}
@@ -84,6 +86,8 @@ public class MemberController {
 	// 로그아웃
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
+		
+		System.out.println("로그아웃 해야지!!");
 
 		session.invalidate();
 
@@ -94,10 +98,12 @@ public class MemberController {
 	// 로그인 성공
 	@RequestMapping(value = "/loginSuccess", method = RequestMethod.GET)
 	public String loginSuccess(HttpSession session) {
+		
+		System.out.println("로그인 성공");
+		
+		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getDetails();
 
-		Member userDetails = (Member) SecurityContextHolder.getContext().getAuthentication().getDetails();
-
-		session.setAttribute("member", userDetails);
+		session.setAttribute("member", memberService.getMember(member));
 
 		return "redirect:index";
 
@@ -112,7 +118,7 @@ public class MemberController {
 	}
 
 	// 중복 로그인
-	@RequestMapping(value = "/loginDuplicate", method = RequestMethod.POST)
+	@RequestMapping(value = "/loginDuplicate", method = RequestMethod.GET)
 	public String loginDuplicate() {
 
 		return "redirect:index";

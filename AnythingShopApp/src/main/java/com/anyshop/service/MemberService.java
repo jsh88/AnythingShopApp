@@ -2,6 +2,8 @@ package com.anyshop.service;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.anyshop.domain.Member;
+
 public interface MemberService {
 
 	public void  addMember(HttpServletRequest request);
@@ -9,5 +11,7 @@ public interface MemberService {
 	public void checkId(HttpServletRequest request);
 
 	public void checkEmail(HttpServletRequest request);
+
+	public Member getMember(Member member);
 
 }

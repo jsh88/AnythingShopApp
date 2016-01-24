@@ -48,4 +48,11 @@ public class MemberServiceImpl implements MemberService {
 		request.setAttribute("isEmail", memberDao.checkEmail(request.getParameter("email")));
 
 	}
+
+	@Override
+	public Member getMember(Member member) {
+		
+		return memberDao.getMember(member);
+		
+	}
 }

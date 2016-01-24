@@ -23,7 +23,7 @@ public class ProductServiceImple implements ProductService {
 	@Override
 	public void getOrders(HttpServletRequest request) {
 
-		request.setAttribute("order", productDao.getOrders(request.getParameter("name"), Integer.parseInt("ono")));
+		request.setAttribute("oList", productDao.getOrders(request.getParameter("name"), Integer.parseInt("ono")));
 
 	}
 

@@ -28,11 +28,10 @@ create sequence product_seq
 
 create table orders(
   ono number not null,
-  id varchar2(30) constraint order_mem_fk references member(id) on delete cascade not null,
+  id varchar2(30) constraint order_mem_fk references member(id) on delete cascade,
   pno number constraint order_product_fk references product(pno) on delete cascade not null, 
   auth char(1) not null,
   quantity number not null,
-  price number not null,
   name varchar2(15) not null,
   addr varchar2(150) not null,
   phone varchar2(20) not null,
@@ -52,7 +51,7 @@ create table log(
   gno number,  
   quantity number,
   auth char(1),
-  tprice number,
+  price number,
   rname varchar2(15),
   raddr varchar2(150),
   rphone varchar2(20),

@@ -37,7 +37,7 @@
 		</div>
 		<div id="footerbottom">
 			<div id="f_logo">
-				<img src="../images/hana.gif" />
+				<img src="resources/images/hana.gif" />
 			</div>
 		</div>
 	</div>

@@ -4,7 +4,7 @@
 <header>
 	<div id="headerWrap">
 		<div id="logo">
-			<span><a href="index"><img src="../images/logo.jpg" /></a></span>
+			<span><a href="index"><img src="resources/images/logo.jpg" /></a></span>
 		</div>
 		<div id="nav">
 				<c:if test="${not empty sessionScope.member}">
@@ -14,7 +14,7 @@
 					<span class="index"><a href="loginPage" id="login">로그인</a></span>
 					<span class="index"><a href="useagree">회원가입</a></span>
 				</c:if>
-					<span class="index"><a href="#">마이페이지</a></span>
+					<span class="index"><a href="mypage">마이페이지</a></span>
 					<span class="index"><a href="#">고객센터</a></span>
 					<span class="index"><a href="#">idea</a></span>
 					<span class="last"><a href="#">Living</a></span>

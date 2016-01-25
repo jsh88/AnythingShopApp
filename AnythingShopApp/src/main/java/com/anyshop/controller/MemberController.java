@@ -17,7 +17,7 @@ import com.anyshop.service.MemberService;
 
 @Controller
 public class MemberController {
-	
+
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -30,7 +30,7 @@ public class MemberController {
 	public void setMainServie(MainService mainService) {
 		this.mainService = mainService;
 	}
-	
+
 	@RequestMapping(value = "useagree")
 	public String useAgree() {
 
@@ -87,7 +87,7 @@ public class MemberController {
 	public String login(HttpSession session) {
 
 		System.out.println("로그인 시작");
-		
+
 		return "redirect:index";
 
 	}
@@ -95,7 +95,7 @@ public class MemberController {
 	// 로그아웃
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
-		
+
 		System.out.println("로그아웃 해야지!!");
 
 		session.invalidate();
@@ -107,10 +107,10 @@ public class MemberController {
 	// 로그인 성공
 	@RequestMapping(value = "/loginSuccess", method = RequestMethod.GET)
 	public String loginSuccess(HttpSession session) {
-		
+
 		System.out.println("로그인 성공");
-		
-		Member member = (Member)SecurityContextHolder.getContext().getAuthentication().getDetails();
+
+		Member member = (Member) SecurityContextHolder.getContext().getAuthentication().getDetails();
 
 		session.setAttribute("member", memberService.getMember(member));
 
@@ -134,44 +134,58 @@ public class MemberController {
 
 	}
 
-	@RequestMapping(value="/mypage")
-	   public String myPageForm(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-	      Member mem = (Member) session.getAttribute("member");
-	      
-	      response.setHeader("X-Frame-Options", "SAMEORIGIN");
-	      mainService.getCart(session, request);
-	      
-	      if (mem != null) {
-	         return "index.jsp?body=member/myPage";
-	      } else {
-	         return "redirect:loginPage";
-	      }
-	   }
-	   
-	   @RequestMapping(value="/updatemember")
-	   public String updateMemberPage(HttpServletRequest request, HttpServletResponse response){
-	      memberService.getMemberPage(request);
-	      
-	       response.setHeader("X-Frame-Options", "SAMEORIGIN");
-	      
-	      return "member/updateMember";
-	   }
-	   
-	   @RequestMapping(value="/update")
-	   public String updateMemberResult(HttpServletRequest request, HttpServletResponse response){
-	      memberService.updateMemberResult(request);
-	      
-	      //response.setHeader("X-Frame-Options", "SAMEORIGIN");
-	      
-	      return "redirect:mypage?su=1";
-	   }
-	   
-	   //최근 본 상품
-	   @RequestMapping(value="/recentwatch")
-	   public String watchProduct(HttpServletRequest request, HttpServletResponse response){
-		   mainService.getWatchProduct(request);
-		   response.setHeader("X-Frame-Options", "SAMEORIGIN");
-		   
-		   return "member/recentWatch";
-	   }
+	@RequestMapping(value = "/mypage")
+	public String myPageForm(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+		Member mem = (Member) session.getAttribute("member");
+
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
+		mainService.getCart(session, request);
+
+		if (mem != null) {
+			return "index.jsp?body=member/myPage";
+		} else {
+			return "redirect:loginPage";
+		}
+	}
+
+	@RequestMapping(value = "/updatemember")
+	public String updateMemberPage(HttpServletRequest request, HttpServletResponse response) {
+		memberService.getMemberPage(request);
+
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
+
+		return "member/updateMember";
+	}
+
+	@RequestMapping(value = "/update")
+	public String updateMemberResult(HttpServletRequest request, HttpServletResponse response) {
+		memberService.updateMemberResult(request);
+
+		// response.setHeader("X-Frame-Options", "SAMEORIGIN");
+
+		return "redirect:mypage?su=1";
+	}
+
+	// 최근 본 상품
+	@RequestMapping(value = "/recentwatch")
+	public String watchProduct(HttpServletRequest request, HttpServletResponse response) {
+		mainService.getWatchProduct(request);
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
+		return "member/recentWatch";
+	}
+
+	@RequestMapping(value = "/oneononeborad")
+	public String oneOnOneBoard(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		memberService.getOneOnOneBoard(request, session);
+
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
+
+		return "member/ONOBoard";
+	}
+
+	@RequestMapping(value = "/onoboardwrite")
+	public String onoBoardWrite(HttpServletResponse response) {
+		return "member/ONOBoardWrite";
+	}
+	
 }

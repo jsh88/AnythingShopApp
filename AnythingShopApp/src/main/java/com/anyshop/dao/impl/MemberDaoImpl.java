@@ -2,6 +2,7 @@ package com.anyshop.dao.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,6 +15,7 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import com.anyshop.dao.MemberDao;
 import com.anyshop.domain.Member;
+import com.anyshop.domain.ONOBoard;
 
 //@Repository
 public class MemberDaoImpl implements MemberDao {
@@ -154,5 +156,29 @@ public class MemberDaoImpl implements MemberDao {
 		SqlParameterSource beanProperty = new BeanPropertySqlParameterSource(m);
 		namedParameterJdbcTemplate.update("UPDATE member SET addr = :addr, email = :email, phone = :phone "
 				+ "WHERE id = :id", beanProperty);
+	}
+	
+	@Override
+	public List<ONOBoard> getoneOnOneBoard(String id) {
+		SqlParameterSource idParam = new MapSqlParameterSource("id", id);
+		return namedParameterJdbcTemplate.query("select * from onoboard where id=:id", idParam,new OneOnOneBoardRowMapper());
+	}
+	
+	private class OneOnOneBoardRowMapper implements RowMapper<ONOBoard>{
+		@Override
+		public ONOBoard mapRow(ResultSet rs, int rowNum) throws SQLException {
+			ONOBoard ono = new ONOBoard();
+			
+			ono.setbNo(rs.getInt("bno"));
+			ono.setId(rs.getString("id"));
+			ono.setType(rs.getString("type"));
+			ono.setoNo(rs.getInt("ono"));
+			ono.setEmail(rs.getString("email"));
+			ono.setPhone(rs.getString("phone"));
+			ono.setTitle(rs.getString("title"));
+			ono.setContent(rs.getString("content"));
+			ono.setCdate(rs.getString("cdate"));
+			return ono;
+		}
 	}
 }

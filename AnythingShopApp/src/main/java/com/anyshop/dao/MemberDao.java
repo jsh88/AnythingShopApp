@@ -1,8 +1,11 @@
 package com.anyshop.dao;
 
+import java.util.List;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.anyshop.domain.Member;
+import com.anyshop.domain.ONOBoard;
 
 public interface MemberDao {
 	
@@ -21,4 +24,6 @@ public interface MemberDao {
 	public Member getUpdateMember(String id);
 	
 	public void updateMember(Member m);
+	
+	public List<ONOBoard> getoneOnOneBoard(String id);
 }

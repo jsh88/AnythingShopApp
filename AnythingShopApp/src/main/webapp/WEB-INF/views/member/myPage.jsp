@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
     
     <%
-    response.setHeader("X-Frame-Options", "SAMEORIGIN");
+    
     Member mem = (Member) session.getAttribute("member");
     List<Product> pList = (List<Product>) session.getAttribute("pList");
     %>
@@ -81,19 +81,16 @@ $.urlParam = function(name) {
 					</div>
 					<div class="infocontent">
 						·&nbsp;<a href="memberOrderSearch" target="mypagefr">주문내역</a><br/>
-						·&nbsp;<a href="">적립금내역</a><br/>
-						·&nbsp;<a href="">할인쿠폰내역</a><br/>
-						·&nbsp;<a href="">상품보관함</a>
 					</div>
 					<div class="infomodify">
-						<div class="infomodfiy_name" onclick="">
-							1:1문의 게시판
+						<div class="infomodfiy_name">
+							<a href="oneononeborad" target="mypagefr">1:1문의 게시판</a>
 						</div>
 						<div class="infobutton">
 							<img style="width: 20px"src="resources/images/click_triangle.gif"/>
 						</div>
 					</div>
-						<div class="infomodfiy_name" onclick="">
+						<div class="infomodfiy_name">
 							<a href="recentwatch" target="mypagefr">최근 본 상품 목록</a>
 						</div>
 						<div class="infobutton">
@@ -102,6 +99,6 @@ $.urlParam = function(name) {
 					</div>
 			</div>
 		</div>
-		<iframe id="mypagefr" name = "mypagefr"  frameborder="0" width="1000px" height="800px"/>
+		<iframe id="mypagefr" name = "mypagefr"  frameborder="0" width="900px" height="800px"></iframe>
 </body>
 </html>

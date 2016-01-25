@@ -23,6 +23,11 @@ function detail(pNo){
 			</tr>
 		</table>
 		<table>
+		<tr>
+		<th>사진</th>
+		<th>제품명</th>
+		<th>가격</th>
+		</tr>
 		<c:forEach var="c" items="${ cookieList }">
 		
 				<tr>

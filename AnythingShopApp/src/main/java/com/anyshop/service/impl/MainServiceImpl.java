@@ -97,12 +97,13 @@ public class MainServiceImpl implements MainService {
 		Product p = new Product();
 		try {
 			p.setName(URLDecoder.decode(nCookie.getValue(), "utf-8"));
+			p.setImage(iCookie.getValue());
+			p.setPrice(Integer.parseInt(pCookie.getValue()));
+			p.setpNo(Integer.parseInt(pnoCookie.getValue()));
+			
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		p.setImage(iCookie.getValue());
-		p.setPrice(Integer.parseInt(pCookie.getValue()));
-		p.setpNo(Integer.parseInt(pnoCookie.getValue()));
 		int count=0;
 		for (int i = 0; i < cookieList.size(); i++){
 			if(cookieList.get(i).getpNo()==p.getpNo()){
@@ -112,7 +113,6 @@ public class MainServiceImpl implements MainService {
 		if (count == 0) {
 			cookieList.add(p);
 		}
-			
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.anyshop.service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.anyshop.domain.Member;
 
@@ -18,4 +19,5 @@ public interface MemberService {
 
 	public Member getMember(Member member);
 
+	public void getOneOnOneBoard(HttpServletRequest request, HttpSession session);
 }

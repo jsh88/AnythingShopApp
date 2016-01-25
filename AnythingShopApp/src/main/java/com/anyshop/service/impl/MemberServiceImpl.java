@@ -1,12 +1,16 @@
 package com.anyshop.service.impl;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.anyshop.dao.MemberDao;
 import com.anyshop.domain.Member;
+import com.anyshop.domain.ONOBoard;
 import com.anyshop.service.MemberService;
 
 @Service
@@ -78,5 +82,17 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.getMember(member);
 		
+	}
+	
+	@Override
+	public void getOneOnOneBoard(HttpServletRequest request, HttpSession session) {
+		
+		Member m = (Member) session.getAttribute("member"); 
+		
+		String id = m.getId();
+		
+		List<ONOBoard> onoList = memberDao.getoneOnOneBoard(id);
+		
+		request.setAttribute("onoList", onoList);
 	}
 }

@@ -26,6 +26,10 @@ create sequence product_seq
   start with 1
   increment by 1;
 
+drop table orders;
+
+select * from product;
+
 create table orders(
   ono number not null,
   id varchar2(30) constraint order_mem_fk references member(id) on delete cascade,
@@ -35,14 +39,42 @@ create table orders(
   name varchar2(15) not null,
   addr varchar2(150) not null,
   phone varchar2(20) not null,
+  pway varchar2(20) not null,
   odate date default sysdate not null,
   adate date default null,
+  receipt number default null,
+  rstate char(1) default 0 not null,
   state char(1) default 0 not null,
+  pstate char(1) default 0 not null,
   constraint order_pk primary key(ono, id, pno)
 );
 
+select * from orders;
+insert into orders
+values(1487154870, 'test', 5, 1, 4, '장성호', '주소당주소', '010-9049-0359', '무통장입금', '2015/12/30', null, 0, null, 0, 1);
+insert into orders
+values(1487154870, 'test', 4, 1, 2, '장성호', '주소당주소', '010-9049-0359', '무통장입금', '2015/12/30', null, 0, null, 0, 1);
+insert into orders
+values(1487154870, 'test', 3, 1, 6, '장성호', '주소당주소', '010-9049-0359', '무통장입금', '2015/12/30', null, 0, null, 0, 1);
+insert into orders
+values(1487154867, 'test', 5, 1, 4, '장성호', '주소당주소', '010-9049-0359', '무통장입금', '2015/12/30', null, 0, null, 0, 1);
+insert into orders
+values(1487154867, 'test', 4, 1, 2, '장성호', '주소당주소', '010-9049-0359', '무통장입금', '2015/12/30', null, 0, null, 0, 1);
+insert into orders
+values(1487154867, 'test', 3, 1, 6, '장성호', '주소당주소', '010-9049-0359', '무통장입금', '2015/12/30', null, 0, null, 0, 1);
+insert into orders
+values(1487154869, 'none', 5, 0, 3, '이준범', '주소당주소2', '010-4444-4444', '무통장입금', '2016/1/4', null, '2016/1/6', 0, 1, 1);
+insert into orders
+values(1487154869, 'none', 4, 0, 5, '이준범', '주소당주소2', '010-4444-4444', '무통장입금', '2016/1/4', null, '2016/1/6', 0, 1, 1);
+insert into orders
+values(1487154868, 'none', 3, 0, 7, '이준범', '주소당주소3', '010-4444-4444', '무통장입금', '2016/1/3', null, null, 0, 0, 1);
+insert into orders
+values(1487154868, 'none', 4, 0, 2, '이준범', '주소당주소3', '010-4444-4444', '무통장입금', '2016/1/3', null, null, 0, 0, 1);
+
+commit;
+
 create sequence orders_seq
-  start with 1
+  start with 1487154871
   increment by 1;
 
 create table log(

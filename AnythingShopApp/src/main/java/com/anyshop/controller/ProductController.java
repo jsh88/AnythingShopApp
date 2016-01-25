@@ -41,4 +41,14 @@ public class ProductController {
 		return "member/orderResult";
 
 	}
+	
+	// 주문 내역 전체 조회
+	@RequestMapping(value = "getOrderDetail")
+	public String getOrderDetail(HttpSession session, HttpServletRequest request) {
+		
+		
+		
+		return "orderPage";
+		
+	}
 }

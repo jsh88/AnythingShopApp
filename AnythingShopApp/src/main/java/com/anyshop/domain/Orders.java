@@ -13,9 +13,45 @@ public class Orders {
 	private String pName;
 	private String addr;
 	private String phone;
-	private String oDate;
-	private String aDate;
-	private boolean state;
+	private String pWay; 		// 결제 방법
+	private String oDate; 		// 주문 날짜
+	private String aDate; 		// 도착 날짜
+	private int receipt; 			// 현금영수증 전화번호
+	private boolean rState; 	// 소득공제용, 지출 증빙용
+	private boolean state;	 	// 배송 상태
+	private boolean pState; 	// 결제 상태
+	
+	public String getpWay() {
+		return pWay;
+	}
+
+	public void setpWay(String pWay) {
+		this.pWay = pWay;
+	}
+
+	public int getReceipt() {
+		return receipt;
+	}
+
+	public void setReceipt(int receipt) {
+		this.receipt = receipt;
+	}
+
+	public boolean isrState() {
+		return rState;
+	}
+
+	public void setrState(boolean rState) {
+		this.rState = rState;
+	}
+
+	public boolean ispState() {
+		return pState;
+	}
+
+	public void setpState(boolean pState) {
+		this.pState = pState;
+	}
 
 	public int gettPrice() {
 		return tPrice;

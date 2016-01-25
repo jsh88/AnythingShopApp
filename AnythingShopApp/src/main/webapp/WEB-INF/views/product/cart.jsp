@@ -1,18 +1,13 @@
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-td {
-	font-size: 15px;
-}
-</style>
-<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link type="text/css" href="resources/css/cart.css" rel="stylesheet"/>
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script>
 function priceupdateplus(count){
 	var quentity = $('#quentity'+count).val();
@@ -139,43 +134,50 @@ function checkdel(){
 </script>
 </head>
 <body>
-	<c:forEach var="p" items="${ pList }" varStatus="s">
-		<table class="table" id="table${s.count }">
-			<tr>
-				<td><input type="checkbox" id="check${s.count }" checked
-					onchange="changef(${s.count })" /></td>
-				<td><img style="width: 100px; height: 100px"
-					src="resources/images/${p.image }" /></td>
-				<td>${p.name }</td>
-				<td>판매가격 : ${p.price } <input type="hidden"
-					id="price${s.count }" value="${p.price }" /> <input type="hidden"
-					id="count${s.last }" value="${s.count }" />
-				</td>
-				<td>구매수량 : <input type="text" id="quentity${s.count }"
-					name="quentity" value="${p.quantity }" readonly style="width: 40px" /></td>
-				<td><div style="padding: 1 0 2 0">
-						<img src=resources/images/btn_plus.gif onclick="plus(${s.count })" />
-					</div>
-					<div style="padding: 1 0 2 0">
-						<img src=resources/images/btn_minus.gif
-							onclick="minus(${s.count })" />
-					</div></td>
-				<td>구매가격: <input type="text" id="result${s.count }"
-					name="payprice" value="${p.price * p.quantity }" readonly /></td>
-			</tr>
-		</table>
-	</c:forEach>
-	총 구매 금액:
-	<input type="text" id="payresult" name="payresult" readonly />
-	<table>
-		<tr>
-			<td><img src=resources/images/btn_check_delete.gif
-				onclick="checkdel()" /></td>
-			<td><img src=resources/images/btn_check_order.gif
-				onclick="pay()" /></td>
-			<td><img src=resources/images/btn_empty2.gif onclick="del()" /></td>
-			<td><img src=resources/images/btn_continue2.gif onclick="back()" /></td>
-		</tr>
-	</table>
+	<div id="cartWrap">
+		<div id="cartTitle">
+			<img src="resources/images/title_cart.gif"/>
+		</div>
+		<div id="shoproot">
+			HOME&nbsp;&gt;&nbsp;<a href="#"><b>장바구니</b></a> 
+		</div>
+		<div id="cartList">
+			<table id="cartTable" class="table">
+				<tr>
+					<th width="5%">선택</th>
+					<th colspan="2">상품정보</th>
+					<th>판매가</th>
+					<th>수량</th>
+					<th>배송비</th>
+					<th>합계</th>
+				</tr>
+				<c:forEach var="p" items="${ pList }" varStatus="s">
+				<tr>
+					<td width="5%"><input type="checkbox" id="check${s.count }" checked onchange="changef(${s.count })" /></td>
+					<td width="10%" ><img style="width: 80px; height: 80px" src="resources/images/${p.image }" /></td>
+					<td width="30%">${p.name }</td>
+					<td width="10%">${p.price } <input type="hidden" id="price${s.count }" value="${p.price }" />
+					<input type="hidden" id="count${s.last }" value="${s.count }" /></td>
+					<td width="15%"><input type="text" id="quentity${s.count }" name="quentity" value="${p.quantity }" readonly /></td>
+					<td width="10%"><img src="resources/images/btn_plus.gif" onclick="plus(${s.count })" />
+					<img src="resources/images/btn_minus.gif" onclick="minus(${s.count })" /></td>
+					<td width="20%"><input type="text" id="result${s.count }" name="payprice" value="${p.price * p.quantity }" readonly /></td>
+				</tr>
+				</c:forEach>
+			</table>
+			<div id="cartbottom">
+				<div id="price">
+				
+					<p><div id="pc"><b><input type="text" id="payresult" name="payresult" readonly /></b></div><div id="p">상품합계금액</div></p>
+				</div>
+			</div>
+			<div id="buttonGroup">
+				<img src=resources/images/btn_check_delete.gif onclick="checkdel()"/>
+				<img src=resources/images/btn_check_order.gif onclick="pay()"/>
+				<img src=resources/images/btn_empty2.gif onclick="del()"/>
+				<img src=resources/images/btn_continue2.gif onclick="back()"/>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

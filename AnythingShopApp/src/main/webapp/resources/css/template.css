@@ -9,7 +9,7 @@
 			height: 27px;
 			float:left;
 			background-color: #F7F7F7;
-			position:fixed;
+
 		}
 		
 		#logo{
@@ -53,16 +53,15 @@
 	
 	#searchimage{
 		float: right;
-		background-image: url("images/b_search.gif");
-		height: 16px;
-		width: 16px;
+		margin-top: -3px;
 	}
 	
 /*footer*/
 
 #footerWrap{
+			
+			clear:both;
 			width: 100%;
-			height:250px;
 			background-color: #FFFFFF;
 			border-top: 2px solid #BFBCBC;
 		}
@@ -154,12 +153,12 @@
 
 
 	#mainWrap{
-		height:680px;
+		height: 100%;
 		background-color: white;	
 	}
 	
 	body{
 		background-color: #F7F7F7;
-	}
+	} 
 	
 				

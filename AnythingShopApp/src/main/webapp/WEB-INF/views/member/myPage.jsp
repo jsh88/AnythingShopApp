@@ -7,7 +7,7 @@
     <%
     response.setHeader("X-Frame-Options", "SAMEORIGIN");
     Member mem = (Member) session.getAttribute("member");
-    List<Product> pList = (List<Product>) request.getAttribute("pList");
+    List<Product> pList = (List<Product>) session.getAttribute("pList");
     %>
 <!DOCTYPE html>
 <html>
@@ -34,27 +34,74 @@ $.urlParam = function(name) {
        }
     }, 10);
  });
+ 
+
 </script>
+<link type="text/css" href="resources/css/mypage.css" rel="stylesheet"/>
 </head>
 <body>
-<div>
-<ul>
-<li>마이페이지</li>
-<li><%=mem.getName() %>님의 쇼핑정보</li>
-<li>장바구니 <%=pList.size() %></li>
-<li>개인정보</li>
-<li><a href="updatemember?id=<%=mem.getId() %>" target="mypagefr">회원정보 수정</a></li>
-<li><a href="deletemember">회원탈퇴</a></li>
-<li>내 쇼핑정보</li>
-<li><a href="memberOrderSearch" target="mypagefr">주문내역/배송조회</a></li>
-<li><a href="answer">1:1 문의개시판</a></li>
-<li><a href="watchlist">최근본 상품목록</a></li>
-</ul>
-</div>
-<div>
-<br/><br/>
-<iframe id="mypagefr" name = "mypagefr"  frameborder="0"
- width="1000px" height="800px"/>
-</div>
+	<div id="mypageWrap">
+		<div id="mypage-left">
+			<div id="left-nav">
+				<div id="left-mypage">
+					마이페이지
+				</div>
+				<div id="left-userinfo">
+					<div id="userinfo">
+						<span id="username"><b><%=mem.getName() %></b></span>님의 쇼핑정보
+					</div>
+					<div id="userInfo-table">
+						<table id="infotable">
+							<tr>
+								<th>·&nbsp;장바구니</th>
+								<td><span class="infospan"><%=pList.size() %></span>개</td>
+							</tr>
+						</table>
+					</div>					
+				</div>
+				<div class="infomodify" id="first">
+						<div class="infomodfiy_name" >
+							개인정보
+						</div>
+						<div class="infobutton">
+							<img style="width: 20px"src="resources/images/click_triangle.gif"/>
+						</div>
+					</div>
+					<div class="infocontent">
+						·&nbsp;<a href="updatemember?id=<%=mem.getId() %>" target="mypagefr">회원정보수정</a><br/>
+						·&nbsp;<a href="deletemember">회원탈퇴</a>
+					</div>
+					<div class="infomodify">
+						<div class="infomodfiy_name">
+							내 쇼핑정보
+						</div>
+						<div class="infobutton">
+							<img style="width: 20px"src="resources/images/click_triangle.gif"/>
+						</div>
+					</div>
+					<div class="infocontent">
+						·&nbsp;<a href="memberOrderSearch" target="mypagefr">주문내역</a><br/>
+						·&nbsp;<a href="">적립금내역</a><br/>
+						·&nbsp;<a href="">할인쿠폰내역</a><br/>
+						·&nbsp;<a href="">상품보관함</a>
+					</div>
+					<div class="infomodify">
+						<div class="infomodfiy_name" onclick="">
+							1:1문의 게시판
+						</div>
+						<div class="infobutton">
+							<img style="width: 20px"src="resources/images/click_triangle.gif"/>
+						</div>
+					</div>
+						<div class="infomodfiy_name" onclick="">
+							<a href="recentwatch" target="mypagefr">최근 본 상품 목록</a>
+						</div>
+						<div class="infobutton">
+							<img style="width: 20px"src="resources/images/click_triangle.gif"/>
+						</div>
+					</div>
+			</div>
+		</div>
+		<iframe id="mypagefr" name = "mypagefr"  frameborder="0" width="1000px" height="800px"/>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link type="text/css" href="complete.css" rel="stylesheet"/>
+	<link type="text/css" href="resources/css/complete.css" rel="stylesheet"/>
 </head>
 <body>
 	<div id="completeWrap">

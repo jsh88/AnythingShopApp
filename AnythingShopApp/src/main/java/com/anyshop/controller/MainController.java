@@ -1,6 +1,7 @@
 package com.anyshop.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +29,9 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="proddetail")
-	public String getProductDetail(HttpServletRequest request){
-		mainService.getProductDetail(request);
-		
+	public String getProductDetail(HttpServletRequest request, HttpServletResponse response){
+		mainService.getProductDetail(request,response);
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
 		return "index.jsp?body=product/detail";
 	}
 	

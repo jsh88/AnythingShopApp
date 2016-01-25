@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="com.anyshop.domain.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -53,6 +54,7 @@ function minus(){
 $(document).ready(function() {
 	$('#quentity').val(1);
 });
+
 </script>
 </head>
 <body>

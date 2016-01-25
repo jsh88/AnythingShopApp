@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,7 +17,7 @@ import com.anyshop.service.MemberService;
 
 @Controller
 public class MemberController {
-
+	
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -163,5 +164,14 @@ public class MemberController {
 	      //response.setHeader("X-Frame-Options", "SAMEORIGIN");
 	      
 	      return "redirect:mypage?su=1";
+	   }
+	   
+	   //최근 본 상품
+	   @RequestMapping(value="/recentwatch")
+	   public String watchProduct(HttpServletRequest request, HttpServletResponse response){
+		   mainService.getWatchProduct(request);
+		   response.setHeader("X-Frame-Options", "SAMEORIGIN");
+		   
+		   return "member/recentWatch";
 	   }
 }

@@ -47,8 +47,8 @@ $.urlParam = function(name) {
 <li><a href="deletemember">회원탈퇴</a></li>
 <li>내 쇼핑정보</li>
 <li><a href="memberOrderSearch" target="mypagefr">주문내역/배송조회</a></li>
-<li><a href="answer">1:1 문의개시판</a></li>
-<li><a href="watchlist">최근본 상품목록</a></li>
+<li><a href="answer" target="mypagefr">1:1 문의개시판</a></li>
+<li><a href="recentwatch" target="mypagefr">최근본 상품목록</a></li>
 </ul>
 </div>
 <div>

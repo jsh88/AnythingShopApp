@@ -139,7 +139,7 @@ public class MemberController {
 	      Member mem = (Member) session.getAttribute("member");
 	      
 	      response.setHeader("X-Frame-Options", "SAMEORIGIN");
-	      mainService.getCart(request);
+	      mainService.getCart(session, request);
 	      
 	      if (mem != null) {
 	         return "index.jsp?body=member/myPage";

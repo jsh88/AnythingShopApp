@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -104,6 +105,21 @@ function changef(count){
 		}
 }
 
+function pay() {
+	
+	var count = $('.table').length;
+	var result = "";
+	for(var i = 0; i < count; i++) {
+		
+		if($('#check' + i).is(":checked")) {
+			result += "c" + i + "=" + i + "&";
+		}
+	}
+	
+	location.href="orderPage?" + result + "count=" + count;
+	
+}
+
 function back(){
 	document.location.href="index"
 }
@@ -124,31 +140,42 @@ function checkdel(){
 </head>
 <body>
 	<c:forEach var="p" items="${ pList }" varStatus="s">
-	<table class="table" id="table${s.count }">
-		<tr>
-			<td><input type="checkbox" id="check${s.count }" checked onchange="changef(${s.count })"/></td>
-			<td><img style="width: 100px; height: 100px" src="resources/images/${p.image }" /></td>
-			<td>${p.name }</td>
-			<td>판매가격 : ${p.price }
-			<input type="hidden" id="price${s.count }" value="${p.price }"/>
-			<input type="hidden" id="count${s.last }" value="${s.count }"/>
-			</td>
-			<td>
-			구매수량 : <input type="text" id="quentity${s.count }" name="quentity"value="${p.quantity }" readonly  style="width:40px"/></td>
-				<td><div style="padding:1 0 2 0"><img src=resources/images/btn_plus.gif  onclick="plus(${s.count })"/></div>
-				<div style="padding:1 0 2 0"><img src=resources/images/btn_minus.gif  onclick="minus(${s.count })"/></div></td>
-			<td>구매가격: <input type="text" id="result${s.count }" name="payprice" value="${p.price * p.quantity }" readonly/></td>
-		</tr>
+		<table class="table" id="table${s.count }">
+			<tr>
+				<td><input type="checkbox" id="check${s.count }" checked
+					onchange="changef(${s.count })" /></td>
+				<td><img style="width: 100px; height: 100px"
+					src="resources/images/${p.image }" /></td>
+				<td>${p.name }</td>
+				<td>판매가격 : ${p.price } <input type="hidden"
+					id="price${s.count }" value="${p.price }" /> <input type="hidden"
+					id="count${s.last }" value="${s.count }" />
+				</td>
+				<td>구매수량 : <input type="text" id="quentity${s.count }"
+					name="quentity" value="${p.quantity }" readonly style="width: 40px" /></td>
+				<td><div style="padding: 1 0 2 0">
+						<img src=resources/images/btn_plus.gif onclick="plus(${s.count })" />
+					</div>
+					<div style="padding: 1 0 2 0">
+						<img src=resources/images/btn_minus.gif
+							onclick="minus(${s.count })" />
+					</div></td>
+				<td>구매가격: <input type="text" id="result${s.count }"
+					name="payprice" value="${p.price * p.quantity }" readonly /></td>
+			</tr>
 		</table>
-		</c:forEach>
-		총 구매 금액: <input type="text" id="payresult" name="payresult"  readonly/>
+	</c:forEach>
+	총 구매 금액:
+	<input type="text" id="payresult" name="payresult" readonly />
 	<table>
-	<tr>
-	<td><img src=resources/images/btn_check_delete.gif onclick="checkdel()"/></td>
-	<td><img src=resources/images/btn_check_order.gif onclick="pay()"/></td>
-	<td><img src=resources/images/btn_empty2.gif onclick="del()"/></td>
-	<td><img src=resources/images/btn_continue2.gif onclick="back()"/></td>
-	</tr>
+		<tr>
+			<td><img src=resources/images/btn_check_delete.gif
+				onclick="checkdel()" /></td>
+			<td><img src=resources/images/btn_check_order.gif
+				onclick="pay()" /></td>
+			<td><img src=resources/images/btn_empty2.gif onclick="del()" /></td>
+			<td><img src=resources/images/btn_continue2.gif onclick="back()" /></td>
+		</tr>
 	</table>
 </body>
 </html>

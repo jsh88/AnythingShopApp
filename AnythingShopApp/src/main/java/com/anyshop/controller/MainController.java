@@ -22,6 +22,7 @@ public class MainController {
 	
 	@RequestMapping(value={"/", "index"})
 	public String getProductAllList(HttpServletRequest request){
+		
 		mainService.getProductAllList(request);
 		
 		return "index.jsp?body=product/main";
@@ -29,6 +30,7 @@ public class MainController {
 	
 	@RequestMapping(value="proddetail")
 	public String getProductDetail(HttpServletRequest request){
+		
 		mainService.getProductDetail(request);
 		
 		return "index.jsp?body=product/detail";
@@ -36,8 +38,10 @@ public class MainController {
 	
 	@RequestMapping(value="addcart")
 	public String addCart(HttpSession session, HttpServletRequest request){
+		
 		mainService.addCart(session, request);
 		
 		return "index.jsp?body=product/cart";
+		
 	}
 }

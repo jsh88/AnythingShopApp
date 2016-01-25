@@ -58,11 +58,11 @@ public class MainServiceImpl implements MainService {
 				pList.add(prod);
 			}
 		}
-		request.setAttribute("pList", pList);
+		session.setAttribute("pList", pList);
 	}
 	
 	@Override
-	public void getCart(HttpServletRequest request) {
-		request.setAttribute("pList", pList);
+	public void getCart(HttpSession session, HttpServletRequest request) {
+		session.setAttribute("pList", pList);
 	}
 }

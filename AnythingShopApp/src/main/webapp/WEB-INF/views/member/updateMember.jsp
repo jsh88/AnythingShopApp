@@ -44,7 +44,7 @@
 		<img src="resources/images/join_txt_04.gif" />* 필수입력사항<br />
 	</div>
 	<div>
-	<form name="updateform" action="update" method="post" >
+	<form action="update" name="updateform" method="post" >
 	<table>
 		<c:set var="phone" value="${member.phone}"/>
 					<tr>
@@ -55,9 +55,9 @@
 						<a href="#"><img src="resources/images/btn_mailcheck.gif" /></a> ※ 주문 관련 정보, 주요 공지사항
 							및 이벤트 당첨 안내 등은 수신 동의 여부에 관계없이 자동 발송됩니다.<br /> 
 						*주소 <input type="text" name="addr" style="width: 500px;" value="${member.addr }" /><br />
-						*핸드폰<input type="text" name="phone1" value="${member.phone}" />-
-						<input type="text" name="phone2" value="${member.phone}"/>
-						-<input type="text" name="phone3" value="${member.phone}"/>
+						*핸드폰<input type="text" name="phone1" value="${fn:substring(phone,0,3)}" />-
+						<input type="text" name="phone2" value="${fn:substring(phone,4,8)}"/>
+						-<input type="text" name="phone3" value="${fn:substring(phone,9,13)}"/>
 						</td>
 				</table><br>
 			</form >

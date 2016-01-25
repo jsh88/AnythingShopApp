@@ -14,7 +14,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
 import com.anyshop.dao.MemberDao;
 import com.anyshop.domain.Member;
-import com.anyshop.domain.Product;
 
 //@Repository
 public class MemberDaoImpl implements MemberDao {
@@ -153,7 +152,7 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void updateMember(Member m) {
 		SqlParameterSource beanProperty = new BeanPropertySqlParameterSource(m);
-		namedParameterJdbcTemplate.update("UPDATE product SET addr = :addr, email = :email, phone = :phone, "
+		namedParameterJdbcTemplate.update("UPDATE member SET addr = :addr, email = :email, phone = :phone "
 				+ "WHERE id = :id", beanProperty);
 	}
 }

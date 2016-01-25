@@ -70,6 +70,8 @@ public class MemberServiceImpl implements MemberService {
 		String phone = phone1 + "-" + phone2 + "-" +phone3;
 		m.setPhone(phone);
 		m.setEmail(request.getParameter("email"));
+		
+		memberDao.updateMember(m);
 	}
 	@Override
 	public Member getMember(Member member) {

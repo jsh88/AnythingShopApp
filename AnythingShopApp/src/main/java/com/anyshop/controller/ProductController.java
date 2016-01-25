@@ -1,6 +1,7 @@
 package com.anyshop.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,12 +32,13 @@ public class ProductController {
 	}
 
 	// 회원 주문조회
-	@RequestMapping(value = "memberOrderSearch", method = RequestMethod.POST)
-	public String getMemberOrders(HttpSession session, HttpServletRequest request) {
+	@RequestMapping(value = "memberOrderSearch", method = RequestMethod.GET)
+	public String getMemberOrders(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 
 		productService.getMemberOrders(session, request);
+		response.setHeader("X-Frame-Options", "SAMEORIGIN");
 
-		return "index.jsp?body=myPage/orderResult";
+		return "member/orderResult";
 
 	}
 }

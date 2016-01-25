@@ -134,35 +134,35 @@ public class MemberController {
 	}
 
 	@RequestMapping(value="/mypage")
-	public String myPageForm(HttpSession session, HttpServletRequest request) {
-		Member mem = (Member) session.getAttribute("member");
-		
-		
-		mainService.getCart(request);
-		
-		if (mem != null) {
-			return "index.jsp?body=member/myPage";
-		} else {
-			return "redirect:loginPage";
-		}
+	   public String myPageForm(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+	      Member mem = (Member) session.getAttribute("member");
+	      
+	      response.setHeader("X-Frame-Options", "SAMEORIGIN");
+	      mainService.getCart(request);
+	      
+	      if (mem != null) {
+	         return "index.jsp?body=member/myPage";
+	      } else {
+	         return "redirect:loginPage";
+	      }
 
-	}
-	
-	@RequestMapping(value="/updatemember")
-	public String updateMemberPage(HttpServletRequest request, HttpServletResponse response){
-		memberService.getMemberPage(request);
-		
-	    response.setHeader("X-Frame-Options", "SAMEORIGIN");
-		
-		return "member/updateMember";
-	}
-	
-	@RequestMapping(value="/update")
-	public String updateMemberResult(HttpServletRequest request, HttpServletResponse response){
-		memberService.updateMemberResult(request);
-		
-		response.setHeader("X-Frame-Options", "SAMEORIGIN");
-		
-		return "redirect:mypage";
-	}
+	   }
+	   
+	   @RequestMapping(value="/updatemember")
+	   public String updateMemberPage(HttpServletRequest request, HttpServletResponse response){
+	      memberService.getMemberPage(request);
+	      
+	       response.setHeader("X-Frame-Options", "SAMEORIGIN");
+	      
+	      return "member/updateMember";
+	   }
+	   
+	   @RequestMapping(value="/update")
+	   public String updateMemberResult(HttpServletRequest request, HttpServletResponse response){
+	      memberService.updateMemberResult(request);
+	      
+	      //response.setHeader("X-Frame-Options", "SAMEORIGIN");
+	      
+	      return "redirect:mypage?su=1";
+	   }
 }

@@ -1,0 +1,165 @@
+@CHARSET "UTF-8";
+
+/*header*/
+
+		#headerWrap{
+			width: 100%;
+/* 			border: 1px solid #BFBCBC; */
+			border-bottom: 1px solid #BFBCBC;
+			height: 27px;
+			float:left;
+			background-color: #F7F7F7;
+			position:fixed;
+		}
+		
+		#logo{
+			width: 4.8em;
+			margin-left: 15px;
+			margin-top: 1px;
+			float:left;
+		}
+		#nav{
+			width: 35em;
+			margin-top: 0px;
+			float:left;
+		}
+		
+		.index, .last{
+		line-height: 25px;
+		vertical-align: middle;
+		font-size: 13px;
+		font-weight: bold;
+		font-family: "맑은 고딕", Dotum, Arial;
+		padding: 0px 5px 0px 5px; 
+	}
+	
+	.index a, .last a{
+		text-decoration: none;
+		color:black;	
+	}
+	
+	#search{
+		margin-top:5px;
+		float: right;
+		height: 16px;
+		background-color: white;
+		border: 1px solid #BFBCBC;
+	}
+	
+	#searchtext{
+		height: 10px;
+		border-style: none;
+	}
+	
+	#searchimage{
+		float: right;
+		background-image: url("images/b_search.gif");
+		height: 16px;
+		width: 16px;
+	}
+	
+/*footer*/
+
+#footerWrap{
+			width: 100%;
+			height:250px;
+			background-color: #FFFFFF;
+			border-top: 2px solid #BFBCBC;
+		}
+		#footerheader{
+			height: 195px;
+			width: 100%;
+		}
+		#footerbottom{
+			border-top: 1px solid #BFBCBC;
+			width: 100%;
+		}
+		
+		#f_logo{
+			margin-left: 10em;
+			width: 100%;
+		}
+		#footerTitle{
+			margin-top: 15px;
+		 	color:#BFBCBC;
+		 	width: 100%;
+		}
+		
+		.t{
+			font-weight: bold;
+			float: left;
+			font-size: 14px;
+		}
+		
+		.c{
+			font-size: 11px;
+			font-family: "맑은 고딕", Dotum, Arial;
+			color:#666666;
+		}
+		
+		#company_t{
+			width:50%;
+		}
+		
+		#company_c{
+			width:50%;
+			float: left;
+		}
+		
+		#rink_t{
+			width:15%;
+		}
+		
+		#rink_c{
+			width:15%;
+			float: left;
+		}
+		
+		#rink_c a{
+			text-decoration: none;
+			color:#666666;
+		}
+		
+		#bank_t{
+			width:15%;
+		}
+		
+		#bank_c{
+			width:15%;
+			float:left;
+		}
+		
+		#cs_t{
+			width:20%;
+		}
+		
+		#cs_c{
+			width:20%;
+			float:left;
+		}
+		
+		#footerContent{
+			width:100%;
+			float: left;
+		}
+		
+		#footerhw{
+			width:80%;
+			margin: 0px auto;
+			height: 15px;
+		}
+			
+			
+/*template*/
+
+
+	#mainWrap{
+		height:680px;
+		background-color: white;	
+	}
+	
+	body{
+		background-color: #F7F7F7;
+	}
+	
+				

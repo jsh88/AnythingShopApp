@@ -145,7 +145,6 @@ public class MemberController {
 	      } else {
 	         return "redirect:loginPage";
 	      }
-
 	   }
 	   
 	   @RequestMapping(value="/updatemember")

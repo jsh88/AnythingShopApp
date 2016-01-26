@@ -32,9 +32,9 @@ a {
 		<div id="product">
 			<table>
 				<tr>
-					<td><label><a href="proddetail?pNo=${p.pNo }"> <img
+					<td><label><a href="proddetail?pNo=${p.pNo }"> <img style="max-width: 350px; max-height: 400px;"
 								src="resources/images/${p.image}"><br /> ${ p.name }<br />
-								${ p.explan }<br /> ${ p.price }<br /></a></label></td>
+								${ p.explan }<br /> ${ p.price }원<br /></a></label></td>
 				</tr>
 			</table>
 		</div>

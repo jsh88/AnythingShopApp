@@ -34,7 +34,7 @@ function write(){
 			<tr>
 				<td>${ob.bNo }</td>
 				<td>${ob.type }</td>
-				<td>${ob.title }</td>
+				<td><a href="onocontent?bNo=${ob.bNo }">${ob.title }</a></td>
 				<td>${ob.id }</td>
 				<td>${ob.cdate }</td>
 			</tr>

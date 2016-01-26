@@ -34,7 +34,11 @@ $.urlParam = function(name) {
        }
     }, 10);
  });
- 
+ function deletemem(){
+	 if(confirm("정말 삭제 하시겠습니까?")) {
+			document.location.href="deletemember";
+		}
+ }
 
 </script>
 <link type="text/css" href="resources/css/mypage.css" rel="stylesheet"/>
@@ -69,7 +73,7 @@ $.urlParam = function(name) {
 					</div>
 					<div class="infocontent">
 						·&nbsp;<a href="updatemember?id=<%=mem.getId() %>" target="mypagefr">회원정보수정</a><br/>
-						·&nbsp;<a href="deletemember">회원탈퇴</a>
+						·&nbsp;<a href="javascript:deletemem()">회원탈퇴</a>
 					</div>
 					<div class="infomodify">
 						<div class="infomodfiy_name">

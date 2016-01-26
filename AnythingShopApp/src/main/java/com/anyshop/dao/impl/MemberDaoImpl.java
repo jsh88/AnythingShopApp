@@ -26,9 +26,9 @@ public class MemberDaoImpl implements MemberDao {
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-		
+
 		this.jdbcTemplate = jdbcTemplate;
-		
+
 	}
 
 	public JdbcTemplate getJdbcTemplate() {
@@ -122,12 +122,12 @@ public class MemberDaoImpl implements MemberDao {
 					}
 				});
 	}
-	
+
 	@Override
-	public Member getUpdateMember(String id){
+	public Member getUpdateMember(String id) {
 		SqlParameterSource idParam = new MapSqlParameterSource("id", id);
-		
-		return namedParameterJdbcTemplate.query("select * from member where id = :id",idParam,
+
+		return namedParameterJdbcTemplate.query("select * from member where id = :id", idParam,
 				new ResultSetExtractor<Member>() {
 
 					@Override
@@ -144,31 +144,38 @@ public class MemberDaoImpl implements MemberDao {
 							m.setPhone(rs.getString("phone"));
 							m.setJdate(rs.getString("jdate"));
 							m.setLdate(rs.getString("ldate"));
-						return m;
-					}
+							return m;
+						}
 						return null;
 					}
 				});
 	}
-	
+
 	@Override
 	public void updateMember(Member m) {
 		SqlParameterSource beanProperty = new BeanPropertySqlParameterSource(m);
-		namedParameterJdbcTemplate.update("UPDATE member SET addr = :addr, email = :email, phone = :phone "
-				+ "WHERE id = :id", beanProperty);
+		namedParameterJdbcTemplate.update(
+				"UPDATE member SET addr = :addr, email = :email, phone = :phone " + "WHERE id = :id", beanProperty);
 	}
-	
+
+	@Override
+	public void deleteMember(String id) {
+		SqlParameterSource idParam = new MapSqlParameterSource("id", id);
+		namedParameterJdbcTemplate.update("delete from member where id = :id", idParam);
+	}
+
 	@Override
 	public List<ONOBoard> getoneOnOneBoard(String id) {
 		SqlParameterSource idParam = new MapSqlParameterSource("id", id);
-		return namedParameterJdbcTemplate.query("select * from onoboard where id=:id", idParam,new OneOnOneBoardRowMapper());
+		return namedParameterJdbcTemplate.query("select * from onoboard where id=:id order by bno desc", idParam,
+				new OneOnOneBoardRowMapper());
 	}
-	
-	private class OneOnOneBoardRowMapper implements RowMapper<ONOBoard>{
+
+	private class OneOnOneBoardRowMapper implements RowMapper<ONOBoard> {
 		@Override
 		public ONOBoard mapRow(ResultSet rs, int rowNum) throws SQLException {
 			ONOBoard ono = new ONOBoard();
-			
+
 			ono.setbNo(rs.getInt("bno"));
 			ono.setId(rs.getString("id"));
 			ono.setType(rs.getString("type"));
@@ -180,5 +187,52 @@ public class MemberDaoImpl implements MemberDao {
 			ono.setCdate(rs.getString("cdate"));
 			return ono;
 		}
+	}
+
+	@Override
+	public void writeONOBoard(ONOBoard ono) {
+		SqlParameterSource beanParam = new BeanPropertySqlParameterSource(ono);
+		namedParameterJdbcTemplate.update("insert into onoboard values(ono_seq.nextval, :id, :type, sysdate, :oNo,"
+				+ ":email, :phone, :title, :content)", beanParam);
+	}
+
+	@Override
+	public ONOBoard onoBoardContent(int bNo) {
+		SqlParameterSource bNoParam = new MapSqlParameterSource("bNo", bNo);
+		return namedParameterJdbcTemplate.query("select * from onoboard where bno = :bNo", bNoParam,
+				new ResultSetExtractor<ONOBoard>() {
+					@Override
+					public ONOBoard extractData(ResultSet rs) throws SQLException, DataAccessException {
+
+						ONOBoard ono = new ONOBoard();
+						if (rs.next()) {
+							ono.setbNo(rs.getInt("bno"));
+							ono.setId(rs.getString("id"));
+							ono.setType(rs.getString("type"));
+							ono.setoNo(rs.getInt("ono"));
+							ono.setEmail(rs.getString("email"));
+							ono.setPhone(rs.getString("phone"));
+							ono.setTitle(rs.getString("title"));
+							ono.setContent(rs.getString("content"));
+							ono.setCdate(rs.getString("cdate"));
+							return ono;
+						}
+						return null;
+					}
+				});
+	}
+
+	@Override
+	public void onoBoardDelete(int bno) {
+		SqlParameterSource bNoParam = new MapSqlParameterSource("bNo", bno);
+		namedParameterJdbcTemplate.update("delete from onoboard where bno=:bNo", bNoParam);
+	}
+
+	@Override
+	public void updateONOBoard(ONOBoard ono) {
+		SqlParameterSource beanProperty = new BeanPropertySqlParameterSource(ono);
+		namedParameterJdbcTemplate.update(
+				"update onoboard set type=:type, ono=:oNo, email=:email, phone=:phone, title=:title, content=:content where bno=:bNo",
+				beanProperty);
 	}
 }

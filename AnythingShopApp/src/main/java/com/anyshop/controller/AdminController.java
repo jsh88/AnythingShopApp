@@ -23,26 +23,41 @@ public class AdminController {
 	public void setAdminService(AdminService adminService) {
 		this.adminService = adminService;
 	}
+	
+	@RequestMapping(value = "/adminPage")
+	public String adminForm() {
+		return "index.jsp?body=admin/adminPage";
+	}
 
 	@RequestMapping(value = "/add")
 	public String addForm() {
-		return "admin/addProduct";
+		return "index.jsp?body=admin/addProduct";
 	}
 
+	@RequestMapping(value = "/delete")
+	public String deleteForm() {
+		return "index.jsp?body=admin/delProduct";
+	}
+	
+	@RequestMapping(value = "/modifyPage")
+	public String modifyPage() {
+		return "index.jsp?body=admin/modifyPage";
+	}
+	
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	public String modifyForm(HttpServletRequest request) {
 
 		adminService.getProduct(request);
 
-		return "admin/modifyProduct";
+		return "index.jsp?body=admin/modifyProduct";
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	public String deleteForm(HttpServletRequest request) {
+	@RequestMapping(value = "/delProduct", method = RequestMethod.GET)
+	public String deleteProduct(HttpServletRequest request) {
 
 		adminService.delProduct(request);
 
-		return "redirect:index";
+		return "index.jsp?body=admin/adminPage";
 	}
 
 	@RequestMapping(value = "/addProduct", method = RequestMethod.POST)
@@ -52,7 +67,7 @@ public class AdminController {
 
 		adminService.addProduct(request, filePath);
 
-		return "redirect:index";
+		return "index.jsp?body=admin/adminPage";
 	}
 
 	@RequestMapping(value = "/modifyProduct", method = RequestMethod.POST)
@@ -62,7 +77,7 @@ public class AdminController {
 
 		adminService.modifyProduct(request, filePath);
 
-		return "redirect:index";
+		return "index.jsp?body=admin/adminPage";
 	}
 
 }

@@ -8,8 +8,15 @@
 		</div>
 		<div id="nav">
 				<c:if test="${not empty sessionScope.member}">
-					<span class="index"><a href="logout">로그아웃</a></span>
+					<c:if test="${sessionScope.member.username eq 'admin'}">
+						<span class="index"><a href="logout">로그아웃</a></span>
+						<span class="index"><a href="adminPage">관리자페이지</a></span>
+					</c:if>
+					<c:if test="${sessionScope.member.username ne 'admin'}">
+						<span class="index"><a href="logout">로그아웃</a></span>
+					</c:if>
 				</c:if>
+				
 				<c:if test="${empty sessionScope.member}">
 					<span class="index"><a href="loginPage" id="login">로그인</a></span>
 					<span class="index"><a href="useagree">회원가입</a></span>

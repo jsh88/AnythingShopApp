@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -114,6 +113,9 @@ public class MemberController {
 
 		session.setAttribute("member", memberService.getMember(member));
 
+		if (member.getUsername().equals("admin"))
+			return "index.jsp?body=admin/adminPage";
+
 		return "redirect:index";
 
 	}
@@ -165,10 +167,10 @@ public class MemberController {
 
 		return "redirect:mypage?su=1";
 	}
-	
-	//회원 탈퇴
+
+	// 회원 탈퇴
 	@RequestMapping(value = "/deletemember")
-	public String deleteMember(HttpSession session){
+	public String deleteMember(HttpSession session) {
 		memberService.deleteMember(session);
 		session.invalidate();
 		return "redirect:index";
@@ -181,8 +183,8 @@ public class MemberController {
 		response.setHeader("X-Frame-Options", "SAMEORIGIN");
 		return "member/recentWatch";
 	}
-	
-	//1:1게시판 리스트
+
+	// 1:1게시판 리스트
 	@RequestMapping(value = "/oneononeborad")
 	public String oneOnOneBoard(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		memberService.getOneOnOneBoard(request, session);
@@ -191,48 +193,48 @@ public class MemberController {
 
 		return "member/ONOBoard";
 	}
-	
-	//1:1게시판 글쓰기 이동
+
+	// 1:1게시판 글쓰기 이동
 	@RequestMapping(value = "/onoboardwrite")
 	public String onoBoardWrite(HttpServletResponse response) {
 		return "member/ONOBoardWrite";
 	}
-	
-	//1:1게시판 글쓰기 결과
-	@RequestMapping(value="/onoboardwriteresult")
-	public String onoBoardWriteResult(HttpServletRequest request, HttpServletResponse response){
+
+	// 1:1게시판 글쓰기 결과
+	@RequestMapping(value = "/onoboardwriteresult")
+	public String onoBoardWriteResult(HttpServletRequest request, HttpServletResponse response) {
 		memberService.writeONOBoard(request);
 		return "redirect:oneononeborad";
 	}
-	
-	//1:1게시판 내용
-	@RequestMapping(value="/onocontent")
-	public String onoBoardContent(HttpServletRequest request, HttpServletResponse response){
+
+	// 1:1게시판 내용
+	@RequestMapping(value = "/onocontent")
+	public String onoBoardContent(HttpServletRequest request, HttpServletResponse response) {
 		memberService.onoBoardContent(request);
 		response.setHeader("X-Frame-Options", "SAMEORIGIN");
-		
+
 		return "member/ONOBoardContent";
 	}
-	
-	//1:1게시판 삭제
-	@RequestMapping(value="/deleteonoboard")
-	public String onoBoardDelete(HttpServletRequest request){
+
+	// 1:1게시판 삭제
+	@RequestMapping(value = "/deleteonoboard")
+	public String onoBoardDelete(HttpServletRequest request) {
 		memberService.onoBoardDelete(request);
-		
+
 		return "redirect:oneononeborad";
 	}
-	
-	@RequestMapping(value="/onoboardupdate")
-	public String onoBoardUpdate(HttpServletRequest request){
+
+	@RequestMapping(value = "/onoboardupdate")
+	public String onoBoardUpdate(HttpServletRequest request) {
 		memberService.onoBoardUpdate(request);
-		
+
 		return "member/ONOBoardUpdate";
 	}
-	
-	@RequestMapping(value="/onoboardupdateresult")
-	public String onoBoardUpdateResult(HttpServletRequest request){
+
+	@RequestMapping(value = "/onoboardupdateresult")
+	public String onoBoardUpdateResult(HttpServletRequest request) {
 		memberService.onoBoardUpdateResult(request);
-		
+
 		return "redirect:oneononeborad";
 	}
 }

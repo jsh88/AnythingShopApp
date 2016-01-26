@@ -160,9 +160,10 @@ function checkdel(){
 					<td width="30%">${p.name }</td>
 					<td width="10%">${p.price } <input type="hidden" id="price${s.count }" value="${p.price }" />
 					<input type="hidden" id="count${s.last }" value="${s.count }" /></td>
-					<td width="15%"><input type="text" id="quentity${s.count }" name="quentity" value="${p.quantity }" readonly /></td>
-					<td width="10%"><img src="resources/images/btn_plus.gif" onclick="plus(${s.count })" />
+					<td width="15%"><input type="text" id="quentity${s.count }" name="quentity" value="${p.quantity }" readonly />
+					<img src="resources/images/btn_plus.gif" onclick="plus(${s.count })" />
 					<img src="resources/images/btn_minus.gif" onclick="minus(${s.count })" /></td>
+					<td width="10%">배송비 별도</td>
 					<td width="20%"><input type="text" id="result${s.count }" name="payprice" value="${p.price * p.quantity }" readonly /></td>
 				</tr>
 				</c:forEach>

@@ -23,7 +23,17 @@ public interface MemberDao {
 	
 	public Member getUpdateMember(String id);
 	
+	public void deleteMember(String id);
+	
 	public void updateMember(Member m);
 	
 	public List<ONOBoard> getoneOnOneBoard(String id);
+	
+	public void writeONOBoard(ONOBoard ono);
+	
+	public ONOBoard onoBoardContent(int bno);
+	
+	public void onoBoardDelete(int bno);
+	
+	public void updateONOBoard(ONOBoard ono);
 }

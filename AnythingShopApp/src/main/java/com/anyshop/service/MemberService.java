@@ -16,8 +16,20 @@ public interface MemberService {
 	public void getMemberPage(HttpServletRequest request);
 	
 	public void updateMemberResult(HttpServletRequest request);
+	
+	public void deleteMember(HttpSession session);
 
 	public Member getMember(Member member);
 
 	public void getOneOnOneBoard(HttpServletRequest request, HttpSession session);
+	
+	public void writeONOBoard(HttpServletRequest request);
+	
+	public void onoBoardContent(HttpServletRequest request);
+	
+	public void onoBoardDelete(HttpServletRequest request);
+	
+	public void onoBoardUpdate(HttpServletRequest request);
+	
+	public void onoBoardUpdateResult(HttpServletRequest request);
 }

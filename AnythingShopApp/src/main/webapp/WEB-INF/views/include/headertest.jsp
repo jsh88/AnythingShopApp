@@ -20,7 +20,8 @@
 					<span class="last"><a href="#">Living</a></span>
 					<div id="search">
 					<form action="#">
-					<input type="text" name="search" id="searchtext"/><div id="searchimage"></div>
+					<input type="text" name="search" id="searchtext"/><div id="searchimage"><input type="image"
+         src="resources/images/b_search.gif" id="searchi"/></div>
 					</form>
 					</div>
 		</div>

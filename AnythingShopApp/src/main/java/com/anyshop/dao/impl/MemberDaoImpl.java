@@ -54,6 +54,7 @@ public class MemberDaoImpl implements MemberDao {
 						m.setAddr(rs.getString("addr"));
 						m.setEmail(rs.getString("email"));
 						m.setJdate(rs.getString("jdate"));
+						m.setPhone(rs.getString("phone"));
 						m.setLdate(rs.getString("ldate"));
 
 						return m;

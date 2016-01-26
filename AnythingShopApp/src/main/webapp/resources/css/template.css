@@ -9,7 +9,6 @@
 			height: 27px;
 			float:left;
 			background-color: #F7F7F7;
-			position:fixed;
 		}
 		
 		#logo{
@@ -58,11 +57,15 @@
 		width: 16px;
 	}
 	
+	#searchimage{
+      margin-top: -2px;
+      float: right;
+   }
+	
 /*footer*/
 
 #footerWrap{
 			width: 100%;
-			height:250px;
 			background-color: #FFFFFF;
 			border-top: 2px solid #BFBCBC;
 		}
@@ -154,7 +157,6 @@
 
 
 	#mainWrap{
-		height:680px;
 		background-color: white;	
 	}
 	

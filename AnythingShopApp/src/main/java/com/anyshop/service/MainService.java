@@ -19,4 +19,5 @@ public interface MainService {
 
 	public void getWatchProduct(HttpServletRequest request);
 	
+	public void searchProduct(HttpServletRequest request);
 }

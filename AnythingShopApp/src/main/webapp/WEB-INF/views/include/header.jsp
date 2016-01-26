@@ -19,10 +19,10 @@
 					<span class="index"><a href="#">idea</a></span>
 					<span class="last"><a href="#">Living</a></span>
 					<div id="search">
-					<form action="#">
+					<form action="search">
 					<input type="text" name="search" id="searchtext"/>
 					<div id="searchimage">
-						<img src="resources/images/b_search.gif"/>
+						<input type="image" src="resources/images/b_search.gif"/>
 					</div>
 					</form>
 					</div>

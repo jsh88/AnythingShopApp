@@ -38,7 +38,12 @@ public class MainDaoImpl implements MainDao {
 
 		return namedParameterJdbcTemplate.query("select * from product", new ProductRowMapper());
 	}
-
+	
+	@Override
+	public List<Product> searchProduct(String searchtext) {
+		return jdbcTemplate.query("select * from product where name like '%"+searchtext+"%'", new ProductRowMapper());
+	}
+	
 	@Override
 	public Product getProductDetail(int pNo) {
 		SqlParameterSource pNoParam = new MapSqlParameterSource("pNo", pNo);
@@ -86,4 +91,6 @@ public class MainDaoImpl implements MainDao {
 			return prod;
 		}
 	}
+	
+	
 }

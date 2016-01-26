@@ -9,4 +9,6 @@ public interface MainDao {
 	public List<Product> getProductAllList();
 	
 	public Product getProductDetail(int pNo);
+	
+	public List<Product> searchProduct(String searchtext);
 }

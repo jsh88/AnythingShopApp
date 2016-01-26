@@ -119,4 +119,13 @@ public class MainServiceImpl implements MainService {
 	public void getWatchProduct(HttpServletRequest request) {
 		request.setAttribute("cookieList", cookieList);
 	}
+	
+	@Override
+	public void searchProduct(HttpServletRequest request) {
+		String search = request.getParameter("search");
+		List<Product> pList = mainDao.searchProduct(search);
+		
+		System.out.println(pList.get(0).getName());
+		request.setAttribute("pList", pList);
+	}
 }

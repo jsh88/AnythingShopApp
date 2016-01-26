@@ -45,4 +45,11 @@ public class MainController {
 		return "index.jsp?body=product/cart";
 
 	}
+	
+	@RequestMapping(value="search")
+	public String searchProduct(HttpServletRequest request){
+		mainService.searchProduct(request);
+		
+		return "index.jsp?body=product/main";
+	}
 }

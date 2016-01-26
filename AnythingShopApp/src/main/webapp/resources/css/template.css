@@ -4,12 +4,11 @@
 
 		#headerWrap{
 			width: 100%;
-/* 			border: 1px solid #BFBCBC; */
+/* 		border: 1px solid #BFBCBC; */
 			border-bottom: 1px solid #BFBCBC;
 			height: 27px;
 			float:left;
 			background-color: #F7F7F7;
-
 		}
 		
 		#logo{
@@ -55,6 +54,11 @@
 		float: right;
 		margin-top: -3px;
 	}
+	
+	#searchimage{
+      margin-top: -2px;
+      float: right;
+   }
 	
 /*footer*/
 

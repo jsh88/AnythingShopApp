@@ -104,10 +104,10 @@ function pay() {
 	
 	var count = $('.table').length;
 	var result = "";
-	for(var i = 0; i < count; i++) {
+	for(var i = 1; i <= count; i++) {
 		
 		if($('#check' + i).is(":checked")) {
-			result += "c" + i + "=" + i + "&";
+			result += "c" + i + "=" + i + "&q" + i + "=" + $('#quentity' + i).val() +"&";
 		}
 	}
 	
@@ -118,10 +118,12 @@ function pay() {
 function back(){
 	document.location.href="index"
 }
+
 function del(){
 		$('.table').remove();
 		$('#payresult').val(0);	
 } 
+
 function checkdel(){
 	$(".table input:checked").each(function(){
 		var checked = $(this).is(":checked");
